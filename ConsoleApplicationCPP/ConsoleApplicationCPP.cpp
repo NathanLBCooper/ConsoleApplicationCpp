@@ -15,7 +15,6 @@ using namespace ConsoleApplicationCpp;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
 	std::unique_ptr<IRandom> randomService = std::make_unique<Random>();
 
 	std::cout << "NUMBERS" << std::endl;
@@ -34,6 +33,5 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
-
 }
 
