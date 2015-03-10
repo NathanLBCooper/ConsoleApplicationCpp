@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <tchar.h>
 #include <cstdint>
 #include <memory>
 #include <vector>
