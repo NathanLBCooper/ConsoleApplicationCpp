@@ -17,6 +17,10 @@ namespace ConsoleApplicationCpp
 		std::uniform_real_distribution<std::double_t> realDistribution;
 		std::uniform_int_distribution<std::int32_t> byteDistribution;
 	public:
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Random"/> class.
+		/// </summary>
+		/// <param name="seed">The seed.</param>
 		Random(std::uint_least32_t seed);
 
 		/// <summary>

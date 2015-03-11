@@ -10,12 +10,15 @@
 
 #include "Random.h"
 #include "IRandom.h"
+#include "Outcome.h"
 
 using namespace ConsoleApplicationCpp;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	std::unique_ptr<IRandom> randomService = std::make_unique<Random>();
+	Outcome outcomeOne = Outcome("1", 17);
+
+	/*std::unique_ptr<IRandom> randomService = std::make_unique<Random>();
 
 	std::cout << "NUMBERS" << std::endl;
 	for (int i = 0; i < 10; i++)
@@ -32,6 +35,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::cout << i << std::endl;
 	}
 
-	return 0;
+	return 0;*/
 }
 

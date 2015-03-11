@@ -6,11 +6,6 @@
 
 namespace ConsoleApplicationCpp
 {
-
-	/// <summary>
-	/// Initializes a new instance of the <see cref="Random"/> class.
-	/// </summary>
-	/// <param name="seed">The seed.</param>
 	Random::Random(std::uint_least32_t seed)
 		: randomNumberGenerator(seed),
 		realDistribution(),
