@@ -8,7 +8,6 @@ namespace ConsoleApplicationCpp
 {
 	Random::Random(std::uint_least32_t seed)
 		: randomNumberGenerator(seed),
-		realDistribution(),
 		byteDistribution(0, 256)
 	{
 	}
@@ -25,19 +24,29 @@ namespace ConsoleApplicationCpp
 
 	std::int32_t Random::Next(std::int32_t minValue, std::int32_t maxValue)
 	{
+		if (minValue < 0 || maxValue < minValue)
+		{
+			throw 
+				std::invalid_argument("minValue and maxValue must be non-negative. maxValue must be greater than minvalue");
+		}
 		std::uniform_int_distribution<std::int32_t> distribution(minValue, maxValue);
 		return distribution(this->randomNumberGenerator);
 	}
 
 	std::double_t Random::NextDouble()
 	{
-		return this->realDistribution(this->randomNumberGenerator);
+		return this->NextDouble(0.0, 1.0);
 	}
 
 	std::double_t Random::NextDouble(std::double_t minValue, std::double_t maxValue)
 	{
-		std::uniform_real_distribution<std::double_t> distribution(minValue, minValue);
-		return this->realDistribution(this->randomNumberGenerator);
+		if (minValue < 0.0 || maxValue < minValue)
+		{
+			throw
+				std::invalid_argument("minValue and maxValue must be non-negative. maxValue must be greater than minvalue");
+		}
+		std::uniform_real_distribution<std::double_t> distribution(minValue, maxValue);
+		return distribution(this->randomNumberGenerator);
 	}
 
 	void Random::NextBytes(std::vector<std::uint8_t>& buffer)

@@ -6,6 +6,7 @@
 #include "Outcome.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace ConsoleApplicationCpp;
 
 namespace ConsoleApplicationCPPTests
 {		
@@ -15,11 +16,11 @@ namespace ConsoleApplicationCPPTests
 		/// <summary>
 		/// Tests that the '==' and the hash is evaluated only by the value of the string Name.
 		/// </summary>
-		TEST_METHOD(TestEqualityAndHashIsEvaluatedByName)
+		TEST_METHOD(OutcomeTestEqualityAndHashIsEvaluatedByName)
 		{
-			Outcome outcomeOne = Outcome("1", 17);
-			Outcome outcomeOneAlso = Outcome("1", 0);
-			Outcome outcomeTwo = Outcome("2", 15);
+			Outcome outcomeOne("1", 17);
+			Outcome outcomeOneAlso("1", 0);
+			Outcome outcomeTwo("2", 15);
 
 			Assert::IsTrue(outcomeOne == outcomeOneAlso);
 			Assert::IsFalse(outcomeOne == outcomeTwo);
@@ -37,22 +38,22 @@ namespace ConsoleApplicationCPPTests
 		/// <summary>
 		/// Tests the WinAmount method.
 		/// </summary>
-		TEST_METHOD(TestWinAmount)
+		TEST_METHOD(OutcomeTestWinAmount)
 		{
 			auto odds = 10;
 			auto bet = 5;
-			Outcome outcome = Outcome("outcome", odds);
+			Outcome outcome("outcome", odds);
 			Assert::IsTrue(outcome.WinAmount(5) == odds * bet);
 		}
 
 		/// <summary>
 		/// Tests the getters and setters.
 		/// </summary>
-		TEST_METHOD(TestGettersAndSetters)
+		TEST_METHOD(OutcomeTestGettersAndSetters)
 		{
 			auto name = "outcome";
 			auto odds = 17;
-			Outcome outcome = Outcome(name,odds);
+			Outcome outcome(name,odds);
 
 			Assert::IsTrue(outcome.Name == name);
 			Assert::IsTrue(outcome.Odds == odds);
@@ -60,25 +61,28 @@ namespace ConsoleApplicationCPPTests
 			Assert::IsTrue(outcome.GetOdds() == odds);
 		}
 
-		TEST_METHOD(TestInvalidNegativeNumbers)
+		/// <summary>
+		/// Tests invalid inputs: negative numbers.
+		/// </summary>
+		TEST_METHOD(OutcomeTestInvalidNegativeNumbers)
 		{
-			Outcome outcome = Outcome("outcome", 1);
+			Outcome outcome("outcome", 1);
 			try
 			{
 				outcome.WinAmount(-1);
 				Assert::Fail();
 			}
-			catch (const std::invalid_argument& ia)
+			catch (const std::invalid_argument&)
 			{
 
 			}
 
 			try
 			{
-				Outcome invalidOutcome = Outcome("outcome", -1);
+				Outcome invalidOutcome("outcome", -1);
 				Assert::Fail();
 			}
-			catch (const std::invalid_argument& ia)
+			catch (const std::invalid_argument&)
 			{
 
 			}
