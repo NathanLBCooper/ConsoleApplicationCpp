@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <cstdint>
 #include <string>
+#include <memory>
 
 #include "Outcome.h"
 
@@ -13,10 +14,6 @@ namespace ConsoleApplicationCpp
 		{
 			throw std::invalid_argument("Odds must be non-negative");
 		}
-	}
-
-	Outcome::~Outcome()
-	{
 	}
 
 	std::string Outcome::GetName() const
@@ -34,7 +31,7 @@ namespace ConsoleApplicationCpp
 	{
 		if (bet < 0)
 		{
-			throw std::invalid_argument("bet must be non-negative");
+			throw std::invalid_argument("Bet must be non-negative");
 		}
 		return this->Odds * bet;
 	}
@@ -47,6 +44,18 @@ namespace ConsoleApplicationCpp
 	bool Outcome::operator!=(const Outcome& outcomeOther) const
 	{
 		return !(this->operator==(outcomeOther));
+	}
+
+	template<class POINTERTYPE>
+	std::uint64_t OutcomePointerHash::operator()(const POINTERTYPE &outcome) const
+	{
+		return std::hash<std::string>()(outcome->Name);
+	}
+	
+	template<class POINTERTYPE>
+	bool OutcomePointerEqual::operator()(POINTERTYPE const& lhs, POINTERTYPE const& rhs)
+	{
+		return (lhs->Name == rhs->Name);
 	}
 }
 

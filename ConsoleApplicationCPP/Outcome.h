@@ -22,11 +22,6 @@ namespace ConsoleApplicationCpp
 		Outcome(std::string name, std::int32_t odds);
 
 		/// <summary>
-		/// Finalizes an instance of the <see cref="Outcome"/> class.
-		/// </summary>
-		~Outcome();
-
-		/// <summary>
 		/// Gets the Name (Use the property Name).
 		/// </summary>
 		/// <returns>The Name</returns>
@@ -57,5 +52,25 @@ namespace ConsoleApplicationCpp
 
 		bool operator== (const Outcome& outcomeOther) const;
 		bool operator!= (const Outcome& outcomeOther) const;
+	};
+
+	/// <summary>
+	/// Hash function for a std::shared_ptr to Outcome
+	/// </summary>
+	struct OutcomePointerHash
+	{
+	public:
+		template<class POINTERTYPE>
+		std::uint64_t operator()(const POINTERTYPE &outcome) const;
+	};
+	
+	/// <summary>
+	/// Equals function for a std::shared_ptr to Outcome
+	/// </summary>
+	struct OutcomePointerEqual
+	{
+	public:		
+		template<class POINTERTYPE>
+		bool operator()(POINTERTYPE const& lhs, POINTERTYPE const& rhs);
 	};
 }

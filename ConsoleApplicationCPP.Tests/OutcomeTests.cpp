@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <unordered_set>
+#include <memory>
 
 #include "CppUnitTest.h"
 #include "Outcome.h"
@@ -31,8 +32,13 @@ namespace ConsoleApplicationCPPTests
 			unorderedSet.insert(outcomeOne);
 			unorderedSet.insert(outcomeOneAlso);
 			unorderedSet.insert(outcomeTwo);
-
 			Assert::IsTrue(unorderedSet.size() == 2);
+
+			std::unordered_set<std::shared_ptr<Outcome>, OutcomePointerHash, OutcomePointerEqual> unorderedSet2;
+			unorderedSet2.insert(std::make_shared<Outcome>(outcomeOne));
+			unorderedSet2.insert(std::make_shared<Outcome>(outcomeOneAlso));
+			unorderedSet2.insert(std::make_shared<Outcome>(outcomeTwo));
+			Assert::IsTrue(unorderedSet2.size() == 2);
 		}
 
 		/// <summary>
