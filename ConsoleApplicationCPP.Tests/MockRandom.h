@@ -1,23 +1,20 @@
 #pragma once
 #include "stdafx.h"
-#include <random>
+#include <cstdint>
 #include <vector>
 
 #include "IRandom.h"
 
-namespace ConsoleApplicationCpp
+using namespace ConsoleApplicationCpp;
+
+namespace ConsoleApplicationCPPTests
 {
-	/// <summary>
-	/// Represents a pseudo-random number generator.
-	/// Uses a Uniform Distribution
-	/// </summary>
-	class Random : public IRandom
+	class MockRandom : public IRandom
 	{
-		std::mt19937 randomNumberGenerator;
-		std::uniform_int_distribution<std::int32_t> byteDistribution;
+	private:
+		std::int32_t returnValue;
 	public:
-		Random(std::uint_least32_t seed);
-		Random() : Random(std::_Random_device()) {};
+		MockRandom(std::int32_t value);
 		std::int32_t Next() override;
 		std::int32_t Next(std::int32_t maxValue) override;
 		std::int32_t Next(std::int32_t minValue, std::int32_t maxValue) override;
@@ -25,5 +22,4 @@ namespace ConsoleApplicationCpp
 		std::double_t NextDouble(std::double_t minValue, std::double_t maxValue) override;
 		void NextBytes(std::vector<std::uint8_t>& buffer) override;
 	};
-
 }

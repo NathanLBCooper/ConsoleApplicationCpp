@@ -7,30 +7,32 @@
 
 namespace ConsoleApplicationCpp
 {
-	// TODO Is bin really getting ownership tranfer or its it just observing (ie what is it's lifetime compared to the object that creates it)?
-	// decision: We don't design objects to be brittle to being passed outside of the creation scope. Either smart pointer, or don't persist it.
-
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Bin"/> class.
+	/// </summary>
+	/// <param name="binOutcomes">The bin outcomes.</param>
 	Bin::Bin(std::unordered_set<std::shared_ptr<Outcome>> binOutcomes)
-		: outcomes(binOutcomes)
-	{
-	}
+		: outcomes(binOutcomes) { }
 
-	Bin::Bin(Bin&& rhs)
-		: outcomes(std::move(rhs.Outcomes))
-	{
-	}
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Bin"/> class.
+	/// </summary>
+	/// <param name="binOutcomes">The bin outcomes.</param>
+	Bin::Bin(std::vector<std::shared_ptr<Outcome>> binOutcomes)
+		: outcomes(binOutcomes.begin(), binOutcomes.end()) { }
 
-	Bin& Bin::operator=(Bin&& other)
-	{
-		if (this != &other)
-		{
-			//todo 
-		}   
-	}
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Bin"/> class.
+	/// </summary>
+	Bin::Bin()
+		: outcomes() { }
 
+	/// <summary>
+	/// Gets the outcomes.
+	/// </summary>
+	/// <returns></returns>
 	std::unordered_set<std::shared_ptr<Outcome>> Bin::GetOutcomes() const
 	{
 		return outcomes;
 	}
-
 }
