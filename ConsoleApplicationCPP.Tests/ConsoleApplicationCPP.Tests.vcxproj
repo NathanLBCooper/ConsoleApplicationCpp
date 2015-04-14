@@ -87,6 +87,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinBuilderTests.cpp" />
     <ClCompile Include="MockRandom.cpp" />
     <ClCompile Include="RandomTests.cpp" />
     <ClCompile Include="stdafx.cpp">
