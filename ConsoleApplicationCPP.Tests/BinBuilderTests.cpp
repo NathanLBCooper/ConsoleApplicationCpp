@@ -23,6 +23,7 @@ namespace ConsoleApplicationCPPTests
 		{
 			auto binBuilder = BinBuilder();
 			auto foo = binBuilder.BuildBins();
+			//binBuilder.Foo();
 		}
 
 	};
