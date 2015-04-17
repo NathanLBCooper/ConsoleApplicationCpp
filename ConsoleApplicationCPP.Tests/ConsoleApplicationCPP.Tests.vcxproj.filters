@@ -35,13 +35,13 @@
     <ClCompile Include="RandomTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WheelTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MockRandom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BinBuilderTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WheelTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
