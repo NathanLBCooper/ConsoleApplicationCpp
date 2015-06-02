@@ -42,6 +42,24 @@
     <ClInclude Include="BinBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="invalid_bet_exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Passenger57.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +81,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BinBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Passenger57.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

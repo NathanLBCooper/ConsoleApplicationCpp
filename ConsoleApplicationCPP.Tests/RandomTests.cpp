@@ -18,8 +18,7 @@ namespace ConsoleApplicationCPPTests
 	public:
 		/// <summary>
 		/// Regression test against fixed seed.
-		/// Not really a full brown unit test of the functionality this class should provide and
-		/// brittle to <random> implementation. But provides useful coverage nonetheless.
+		/// Not really an effective unit test, brittle against <random> implementation.
 		/// </summary>
 		TEST_METHOD(RandomRegressionTestAgainstFixedSeed)
 		{

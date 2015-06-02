@@ -9,12 +9,12 @@ namespace ConsoleApplicationCpp
 	class Bin
 	{
 	private:
-		std::unordered_set<std::shared_ptr<Outcome>> outcomes;
+		_hashedUnorderedOutcomePtrSet(std::shared_ptr) outcomes;
 	public:
 		Bin();
 		Bin(std::vector<std::shared_ptr<Outcome>> binOutcomes);
-		Bin(std::unordered_set<std::shared_ptr<Outcome>> binOutcomes);
-		std::unordered_set<std::shared_ptr<Outcome>> GetOutcomes() const;
-		_property_readonly(std::unordered_set<std::shared_ptr<Outcome>>, Outcomes, GetOutcomes);
+		Bin(_hashedUnorderedOutcomePtrSet(std::shared_ptr) binOutcomes);
+		_hashedUnorderedOutcomePtrSet(std::shared_ptr) GetOutcomes() const;
+		_property_readonly(_hashedUnorderedOutcomePtrSet(std::shared_ptr), Outcomes, GetOutcomes);
 	};
 }

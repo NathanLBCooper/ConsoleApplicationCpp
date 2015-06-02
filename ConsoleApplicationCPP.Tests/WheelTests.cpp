@@ -28,23 +28,10 @@ namespace ConsoleApplicationCPPTests
 			auto bins = binBuilder.GetBins();
 			auto outcomes = binBuilder.GetOutcomes();
 
-			for (auto i = 0; i < bins.size(); i++){
+			for (std::size_t i = 0; i < bins.size(); i++){
 				Wheel wheel(bins, outcomes, std::move(std::make_unique<MockRandom>(i)));
 				Assert::IsTrue(wheel.Next() == bins[i]);
 			}
-		}
-
-		/// <summary>
-		/// Wheels the test returns correct outcomes.
-		/// </summary>
-		TEST_METHOD(WheelTestReturnsOutcomes)
-		{
-			auto binBuilder = BinBuilder();
-			auto bins = binBuilder.GetBins();
-			auto outcomes = binBuilder.GetOutcomes();
-
-			Wheel wheel(bins, outcomes, std::move(std::make_unique<Random>()));
-			Assert::IsTrue(wheel.Outcomes == outcomes);
 		}
 	};
 }

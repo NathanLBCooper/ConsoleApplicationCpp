@@ -23,22 +23,48 @@ namespace ConsoleApplicationCPPTests
 			Outcome outcomeOneAlso("1", 0);
 			Outcome outcomeTwo("2", 15);
 
+			// Equality
 			Assert::IsTrue(outcomeOne == outcomeOneAlso);
 			Assert::IsFalse(outcomeOne == outcomeTwo);
 			Assert::IsFalse(outcomeOne != outcomeOneAlso);
 			Assert::IsTrue(outcomeOne != outcomeTwo);
 
+			// hashset of Outcome
 			std::unordered_set<Outcome> unorderedSet;
 			unorderedSet.insert(outcomeOne);
 			unorderedSet.insert(outcomeOneAlso);
 			unorderedSet.insert(outcomeTwo);
 			Assert::IsTrue(unorderedSet.size() == 2);
 
-			std::unordered_set<std::shared_ptr<Outcome>, OutcomePointerHash, OutcomePointerEqual> unorderedSet2;
+			// hashset of std::shared_ptr<Outcome>
+			_hashedUnorderedOutcomePtrSet(std::shared_ptr) unorderedSet2;
 			unorderedSet2.insert(std::make_shared<Outcome>(outcomeOne));
 			unorderedSet2.insert(std::make_shared<Outcome>(outcomeOneAlso));
 			unorderedSet2.insert(std::make_shared<Outcome>(outcomeTwo));
 			Assert::IsTrue(unorderedSet2.size() == 2);
+
+			// hashset of Outcome*
+			_hashedUnorderedOutcomeRawPtrSet unorderedSet3;
+			try
+			{
+				unorderedSet3.insert(new Outcome(outcomeOne));
+				unorderedSet3.insert(new Outcome(outcomeOneAlso));
+				unorderedSet3.insert(new Outcome(outcomeTwo));
+				Assert::IsTrue(unorderedSet3.size() == 2);
+			}
+			// (hacky finally clause)
+			catch (...)
+			{
+				for (auto & element : unorderedSet3)
+				{
+					delete element;
+				}
+				throw;
+			}
+			for (auto & element : unorderedSet3)
+			{
+				delete element;
+			}
 		}
 
 		/// <summary>
@@ -49,22 +75,7 @@ namespace ConsoleApplicationCPPTests
 			auto odds = 10;
 			auto bet = 5;
 			Outcome outcome("outcome", odds);
-			Assert::IsTrue(outcome.WinAmount(5) == odds * bet);
-		}
-
-		/// <summary>
-		/// Tests the getters and setters.
-		/// </summary>
-		TEST_METHOD(OutcomeTestGettersAndSetters)
-		{
-			auto name = "outcome";
-			auto odds = 17;
-			Outcome outcome(name,odds);
-
-			Assert::IsTrue(outcome.Name == name);
-			Assert::IsTrue(outcome.Odds == odds);
-			Assert::IsTrue(outcome.GetName() == name);
-			Assert::IsTrue(outcome.GetOdds() == odds);
+			Assert::IsTrue(outcome.WinAmount(5) == (odds * bet) + bet);
 		}
 
 		/// <summary>

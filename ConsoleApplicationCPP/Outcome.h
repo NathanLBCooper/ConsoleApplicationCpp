@@ -19,29 +19,38 @@ namespace ConsoleApplicationCpp
 		_property_readonly(std::string, Name, GetName);
 		std::int32_t GetOdds() const;	
 		_property_readonly(std::int32_t, Odds, GetOdds);
-		std::int32_t WinAmount(std::int32_t bet);
+		std::int32_t WinAmount(std::int32_t betAmount);
 
 		bool operator== (const Outcome& outcomeOther) const;
 		bool operator!= (const Outcome& outcomeOther) const;
 	};
 
 	/// <summary>
-	/// Hash function for a std::shared_ptr to Outcome
+	/// Hash function for a smart pointer to Outcome
 	/// </summary>
 	struct OutcomePointerHash
 	{
 	public:
 		template<class POINTERTYPE>
-		std::uint64_t operator()(const POINTERTYPE &outcome) const;
+		std::uint64_t operator()(const POINTERTYPE &outcome) const
+		{
+			return std::hash<std::string>()(outcome->Name);
+		}
 	};
-	
+
 	/// <summary>
-	/// Equals function for a std::shared_ptr to Outcome
+	/// Equals function for a smart pointer  to Outcome
 	/// </summary>
 	struct OutcomePointerEqual
 	{
-	public:		
+	public:
 		template<class POINTERTYPE>
-		bool operator()(POINTERTYPE const& lhs, POINTERTYPE const& rhs);
+		bool operator()(POINTERTYPE const& lhs, POINTERTYPE const& rhs)
+		{
+			return (lhs->Name == rhs->Name);
+		}
 	};
+
+	#define _hashedUnorderedOutcomePtrSet(POINTERTYPE) std::unordered_set<POINTERTYPE<Outcome>,OutcomePointerHash, OutcomePointerEqual>
+	#define _hashedUnorderedOutcomeRawPtrSet std::unordered_set<Outcome*,OutcomePointerHash, OutcomePointerEqual>
 }

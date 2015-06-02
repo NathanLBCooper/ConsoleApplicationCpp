@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <array>
+#include <cstdint>
 #include <vector>
 #include <mutex>
 #include "Bin.h"
@@ -8,31 +9,50 @@
 
 namespace ConsoleApplicationCpp
 {
+	/// <summary>
+	/// Initializes a new instance of the <see cref="BinBuilder"/> class.
+	/// </summary>
 	BinBuilder::BinBuilder()
 	{
 	}
 
+	/// <summary>
+	/// Gets the bins.
+	/// </summary>
+	/// <returns></returns>
 	std::vector<std::shared_ptr<Bin>> BinBuilder::GetBins()
 	{	
 		this->LazyInitialise();
 		return this->bins;
 	}
 
+	/// <summary>
+	/// Gets the outcomes.
+	/// </summary>
+	/// <returns></returns>
 	std::vector<std::shared_ptr<Outcome>> BinBuilder::GetOutcomes()
 	{
 		this->LazyInitialise();
 		return this->outcomes;
 	}
 
+	// todo there is no call for this to be lazy. Just practicing really.
+	// Actually the mutex is probably way more expensive than the operations.
 	void BinBuilder::LazyInitialise()
 	{
-		std::lock_guard<std::mutex> lock(this->initMutex);
 		if (this->initialised)
 		{
 			return;
 		}
 
-		initialised = true;
+		{
+			std::lock_guard<std::mutex> lock(this->initMutex);
+			if (this->initialised)
+			{
+				return;
+			}
+			initialised = true;
+		}
 
 		std::vector<OutcomesSet> binOutcomesSets(numberOfBins, OutcomesSet());
 		this->BuildStraightOutcomes(this->outcomes, binOutcomesSets);
@@ -198,7 +218,7 @@ namespace ConsoleApplicationCpp
 	{
 		{
 			static const auto evenBetOdds = 1;
-			static const std::array<int, 18> redNumbers{ { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 } };
+			static const std::array<std::int32_t, 18> redNumbers{ { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 } };
 
 			auto even = std::make_shared<Outcome>("even", evenBetOdds);
 			auto odd = std::make_shared<Outcome>("odd", evenBetOdds);

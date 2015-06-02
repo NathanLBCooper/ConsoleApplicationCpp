@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include <cstdint>
 #include <random>
 #include <vector>
 

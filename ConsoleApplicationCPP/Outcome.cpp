@@ -42,17 +42,17 @@ namespace ConsoleApplicationCpp
 	}
 
 	/// <summary>
-	/// Calculates the Win Amount
+	/// Caculate the Win Amount. The overall, including the returned stake.
 	/// </summary>
 	/// <param name="bet">The bet.</param>
 	/// <returns>The win amount</returns>
-	std::int32_t Outcome::WinAmount(std::int32_t bet)
+	std::int32_t Outcome::WinAmount(std::int32_t betAmount)
 	{
-		if (bet < 0)
+		if (betAmount < 0)
 		{
 			throw std::invalid_argument("Bet must be non-negative");
 		}
-		return this->Odds * bet;
+		return (this->Odds * betAmount) + betAmount;
 	}
 
 	bool Outcome::operator==(const Outcome& outcomeOther) const
@@ -64,22 +64,11 @@ namespace ConsoleApplicationCpp
 	{
 		return !(this->operator==(outcomeOther));
 	}
-
-	template<class POINTERTYPE>
-	std::uint64_t OutcomePointerHash::operator()(const POINTERTYPE &outcome) const
-	{
-		return std::hash<std::string>()(outcome->Name);
-	}
-	
-	template<class POINTERTYPE>
-	bool OutcomePointerEqual::operator()(POINTERTYPE const& lhs, POINTERTYPE const& rhs)
-	{
-		return (lhs->Name == rhs->Name);
-	}
 }
 
 namespace std {
-	template <> struct hash <ConsoleApplicationCpp::Outcome>
+	template <> 
+	struct hash <ConsoleApplicationCpp::Outcome>
 	{
 		size_t operator()(const ConsoleApplicationCpp::Outcome & x) const
 		{
