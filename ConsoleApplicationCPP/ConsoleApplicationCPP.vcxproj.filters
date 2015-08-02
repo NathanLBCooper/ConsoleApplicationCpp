@@ -60,6 +60,9 @@
     <ClInclude Include="Passenger57.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RouletteTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,6 +96,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Passenger57.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RouletteTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

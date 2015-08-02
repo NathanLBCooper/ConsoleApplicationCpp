@@ -89,6 +89,7 @@
     <ClInclude Include="Outcome.h" />
     <ClInclude Include="Passenger57.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="RouletteTable.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="targetver.h" />
@@ -103,6 +104,7 @@
     <ClCompile Include="Outcome.cpp" />
     <ClCompile Include="Passenger57.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RouletteTable.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

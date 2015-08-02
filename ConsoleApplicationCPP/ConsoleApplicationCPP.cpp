@@ -11,30 +11,31 @@
 #include "Random.h"
 #include "IRandom.h"
 #include "Outcome.h"
+#include "Game.h"
+#include "Table.h"
+#include "IPlayer.h"
+#include "Passenger57.h"
+#include "BinBuilder.h"
+#include "RouletteTable.h"
 
 using namespace ConsoleApplicationCpp;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Outcome outcomeOne = Outcome("1", 17);
+	const int tableLimit = 100;
+	std::shared_ptr<Table> table = std::make_shared<RouletteTable>(tableLimit);
 
-	/*std::unique_ptr<IRandom> randomService = std::make_unique<Random>();
+	std::vector<std::unique_ptr<IPlayer>> players;
+	players.push_back(std::move(std::make_unique<Passenger57>(table)));
 
-	std::cout << "NUMBERS" << std::endl;
-	for (int i = 0; i < 10; i++)
+
+	Game game(table, std::move(players));
+
+	for (int i = 0; i < 50; i++)
 	{
-		std::cout << randomService->Next(0, 10) << std::endl;
+		game.Cycle();
 	}
 
-	std::vector<std::uint8_t> buffer(100);
-	randomService->NextBytes(buffer);
-
-	std::cout << "BUFFER" << std::endl;
-	for (auto &i : buffer)
-	{
-		std::cout << i << std::endl;
-	}
-
-	return 0;*/
+	return 0;
 }
 

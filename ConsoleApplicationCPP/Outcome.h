@@ -26,7 +26,7 @@ namespace ConsoleApplicationCpp
 	};
 
 	/// <summary>
-	/// Hash function for a smart pointer to Outcome
+	/// Hash function for a pointer to Outcome
 	/// </summary>
 	struct OutcomePointerHash
 	{
@@ -39,7 +39,7 @@ namespace ConsoleApplicationCpp
 	};
 
 	/// <summary>
-	/// Equals function for a smart pointer  to Outcome
+	/// Equals function for a pointer  to Outcome
 	/// </summary>
 	struct OutcomePointerEqual
 	{

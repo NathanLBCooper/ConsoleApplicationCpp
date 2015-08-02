@@ -8,6 +8,7 @@
 #include "Bin.h"
 #include "IPlayer.h"
 #include "Wheel.h"
+#include "Outcome.h"
 
 namespace ConsoleApplicationCpp
 {
@@ -23,6 +24,8 @@ namespace ConsoleApplicationCpp
 		bool IsValid(std::vector<Bet> const &bets) const;
 		void Cycle(IPlayer &player) const;
 		std::int32_t GetLimit() const;
+		std::vector<std::shared_ptr<Outcome>> GetOutcomes() const;
 		_property_readonly(std::int32_t, Limit, GetLimit);
+		_property_readonly(std::vector<std::shared_ptr<Outcome>>, Outcomes, GetOutcomes);
 	};
 }

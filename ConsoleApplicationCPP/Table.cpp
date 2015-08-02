@@ -45,14 +45,12 @@ namespace ConsoleApplicationCpp
 		}
 
 		player.Win(winningBets);
-
-		//todo?, write some tests first though
-		throw std::runtime_error("not implemented");
 	}
 
 	bool Table::IsBetWinning(Bet const &bet, std::shared_ptr<Bin> const &winningBin) const
 	{
-		return (winningBin->Outcomes.find(bet.TheOutcome) != winningBin->Outcomes.end());
+		auto outcomes = winningBin->Outcomes;
+		return (outcomes.find(bet.TheOutcome) != outcomes.end());
 	}
 
 	std::int32_t Table::SumBet(std::vector<Bet> const &bets) const
@@ -64,5 +62,10 @@ namespace ConsoleApplicationCpp
 		}
 
 		return total;
+	}
+
+	std::vector<std::shared_ptr<Outcome>> Table::GetOutcomes() const
+	{
+		return this->wheel->Outcomes;
 	}
 }

@@ -9,18 +9,23 @@
 
 namespace ConsoleApplicationCpp
 {
-	//Game::Game(std::unique_ptr<Wheel> wheel)
-	//	: wheel(std::move(wheel))
-	//{
-	//}
+	Game::Game() {}
 
-	//void Game::Cycle(IPlayer &player)
-	//{
-	//	Table table(this->limit);
-	//	table.PlaceBets(player.PlaceBets());
+	Game::Game(std::shared_ptr<Table> table, std::vector<std::unique_ptr<IPlayer>> players)
+		: table(table),
+		players(std::move(players))
+	{
+		if (std::find(this->players.begin(), this->players.end(), nullptr) != this->players.end())
+		{
+			throw std::runtime_error("IPlayer cannot be nullptr");
+		}
+	}
 
-	//	std::unordered_set<std::shared_ptr<Outcome>> winningOutcomes(this->wheel->Next()->Outcomes);
-
-	//	
-	//}
+	void Game::Cycle()
+	{
+		for (auto &player : this->players)
+		{
+			this->table->Cycle(*player);
+		}
+	}
 }
